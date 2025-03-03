@@ -1,5 +1,8 @@
-const cursor = document.getElementById("cursor");
+document.addEventListener("DOMContentLoaded", function () {
+  const menuToggle = document.querySelector(".menu-toggle");
+  const navLinks = document.querySelector(".nav-links");
 
-document.addEventListener("mousemove", function (e) {
-  cursor.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
+  menuToggle.addEventListener("click", function () {
+    navLinks.style.display = navLinks.style.display === "flex" ? "none" : "flex";
+  });
 });
