@@ -90,7 +90,7 @@
             z-index: -1;
         }
 
-        /* Hero background using GitHub bg.jpg */
+        /* Hero background: bg.jpg in same folder as index.html */
         .hero-section {
             position: relative;
             z-index: 0;
@@ -102,7 +102,7 @@
             background-image: url("./bg.jpg");
             background-size: cover;
             background-position: center;
-            opacity: 0.40;          /* 明るめ */
+            opacity: 0.40;
             mix-blend-mode: lighten;
             pointer-events: none;
             z-index: -1;
@@ -206,7 +206,7 @@
             },
             {
                 year: '2024',
-                title: 'マナビDXクエスト 2024', 
+                title: 'マナビDXクエスト 2024',
                 companies: '株式会社マツオ様、株式会社JIYU Laboratories様、エヌ・エス・エス株式会社様',
                 url: 'https://dxq.manabi-dx.ipa.go.jp/images/DXQ-pbl-case_2024.pdf',
             },
@@ -242,43 +242,50 @@
             },
         ];
 
-        const BentoCard = ({ title, subtitle, desc, icon: Icon, span = "", tags = [], children }) => (
-            <div className={`glass-card p-8 md:p-10 rounded-[2rem] flex flex-col justify-between hover:border-gray-500 transition-all duration-500 group relative overflow-hidden ${span}`}>
-                <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+        // scrollOnMobile: true の場合はスマホで内部スクロール
+        const BentoCard = ({ title, subtitle, desc, icon: Icon, span = "", tags = [], children, scrollOnMobile = false }) => {
+            const contentClass = scrollOnMobile
+                ? "relative z-10 flex flex-col h-full max-h-[400px] overflow-y-auto md:max-h-none md:overflow-visible pr-1"
+                : "relative z-10 flex flex-col h-full";
 
-                <div className="relative z-10 flex flex-col h-full">
-                    <div className="flex justify-between items-start mb-6">
-                        <div className="w-12 h-12 rounded-2xl bg-white/5 border border-white/5 flex items-center justify-center group-hover:scale-110 transition-transform duration-500">
-                            <Icon className="w-6 h-6 text-white" />
-                        </div>
-                        <IconArrow className="w-5 h-5 text-gray-600 group-hover:text-white transition-colors" />
-                    </div>
-                    
-                    <h3 className="text-3xl font-bold mb-2 tracking-tight text-white">{title}</h3>
-                    <p className="text-sm font-serif italic text-accent mb-4 opacity-80">{subtitle}</p>
-                    <p className="text-base leading-relaxed mb-4 text-secondary">
-                        {desc}
-                    </p>
+            return (
+                <div className={`glass-card p-8 md:p-10 rounded-[2rem] flex flex-col justify-between hover:border-gray-500 transition-all duration-500 group relative overflow-hidden ${span}`}>
+                    <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
 
-                    {children && (
-                        <div className="mt-2 space-y-2 text-sm text-secondary">
-                            {children}
+                    <div className={contentClass}>
+                        <div className="flex justify-between items-start mb-6">
+                            <div className="w-12 h-12 rounded-2xl bg-white/5 border border-white/5 flex items-center justify-center group-hover:scale-110 transition-transform duration-500">
+                                <Icon className="w-6 h-6 text-white" />
+                            </div>
+                            <IconArrow className="w-5 h-5 text-gray-600 group-hover:text-white transition-colors" />
                         </div>
-                    )}
-                    
-                    <div className="flex flex-wrap gap-2 mt-auto pt-4">
-                        {tags.map(tag => (
-                            <span
-                                key={tag}
-                                className="text-[10px] font-bold uppercase tracking-widest border border-white/10 px-3 py-1 rounded-full text-gray-400 group-hover:text-white group-hover:border-white/30 transition-colors"
-                            >
-                                {tag}
-                            </span>
-                        ))}
+                        
+                        <h3 className="text-3xl font-bold mb-2 tracking-tight text-white">{title}</h3>
+                        <p className="text-sm font-serif italic text-accent mb-4 opacity-80">{subtitle}</p>
+                        <p className="text-base leading-relaxed mb-4 text-secondary">
+                            {desc}
+                        </p>
+
+                        {children && (
+                            <div className="mt-2 space-y-2 text-sm text-secondary">
+                                {children}
+                            </div>
+                        )}
+                        
+                        <div className="flex flex-wrap gap-2 mt-auto pt-4">
+                            {tags.map(tag => (
+                                <span
+                                    key={tag}
+                                    className="text-[10px] font-bold uppercase tracking-widest border border-white/10 px-3 py-1 rounded-full text-gray-400 group-hover:text-white group-hover:border-white/30 transition-colors"
+                                >
+                                    {tag}
+                                </span>
+                            ))}
+                        </div>
                     </div>
                 </div>
-            </div>
-        );
+            );
+        };
 
         const App = () => {
             useIntersectionObserver();
@@ -288,7 +295,6 @@
             const openLightbox = (image) => setLightboxImage(image);
             const closeLightbox = () => setLightboxImage(null);
 
-            // ESCキーで閉じる
             useEffect(() => {
                 if (!lightboxImage) return;
                 const handleKey = (e) => {
@@ -399,7 +405,7 @@
                                     </div>
                                 </BentoCard>
 
-                                {/* AI & Logic */}
+                                {/* AI & Logic（scrollOnMobile 有効） */}
                                 <BentoCard 
                                     span="md:row-span-2"
                                     icon={IconBrain}
@@ -407,6 +413,7 @@
                                     subtitle="Quiet Intelligence"
                                     desc="We design workflow and data pipelines using AI, and publish research-style projects born from industrial DX collaborations. The focus is on quiet but robust AI backends that support business development and operational efficiency."
                                     tags={['LLM/GPT', 'Automation', 'Python', 'DX']}
+                                    scrollOnMobile={true}
                                 >
                                     <div className="border-t border-white/10 pt-4 mt-3 space-y-5">
                                         <div>
@@ -504,6 +511,7 @@
                                     "To define the city,<br/>
                                     <span className="text-secondary">we must walk through it."</span>
                                 </p>
+
                                 <div className="text-lg text-secondary leading-relaxed space-y-6">
                                     <p>
                                         Chattso-GPT is a label for freelance and project-based work that moves across
@@ -524,7 +532,6 @@
                             {/* Right: portfolio images */}
                             <div className="grid grid-cols-2 gap-4 md:mt-8">
                                 {portfolioImages.map((img, index) => {
-                                    // （Figure drawing）
                                     const objectPosClass =
                                         index === 1
                                             ? 'object-cover object-[50%_20%]'
