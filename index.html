@@ -25,8 +25,11 @@
                         surface: 'rgba(255, 255, 255, 0.03)',
                         surfaceHover: 'rgba(255, 255, 255, 0.08)',
                         primary: '#ffffff',
-                        secondary: '#a1a1aa',
-                        accent: '#E0CCBB', // Champagne Gold
+                        secondary: '#b5b5bd',
+                        accent: '#D4AF37', // Rich Gold
+                        gold: '#D4AF37',
+                        goldLight: '#F0D68A',
+                        goldDark: '#A68B2C',
                     },
                     fontFamily: {
                         sans: ['-apple-system', 'BlinkMacSystemFont', '"Segoe UI"', 'Roboto', 'sans-serif'],
@@ -55,7 +58,8 @@
 
         ::-webkit-scrollbar { width: 6px; }
         ::-webkit-scrollbar-track { background: #050505; }
-        ::-webkit-scrollbar-thumb { background: #333; border-radius: 3px; }
+        ::-webkit-scrollbar-thumb { background: rgba(212, 175, 55, 0.4); border-radius: 3px; }
+        ::-webkit-scrollbar-thumb:hover { background: rgba(212, 175, 55, 0.7); }
 
         .fade-in-up {
             opacity: 0;
@@ -72,7 +76,12 @@
             background: rgba(20, 20, 20, 0.6);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(212, 175, 55, 0.12);
+            box-shadow: 0 0 30px rgba(212, 175, 55, 0.03);
+        }
+        .glass-card:hover {
+            border-color: rgba(212, 175, 55, 0.25);
+            box-shadow: 0 0 40px rgba(212, 175, 55, 0.06);
         }
 
         @keyframes float {
@@ -85,7 +94,7 @@
             position: absolute;
             border-radius: 50%;
             filter: blur(80px);
-            opacity: 0.4;
+            opacity: 0.35;
             animation: float 10s infinite ease-in-out;
             z-index: -1;
         }
@@ -211,6 +220,12 @@
                 url: 'https://dxq.manabi-dx.ipa.go.jp/images/DXQ-pbl-case_2024.pdf',
             },
             {
+                year: '2025',
+                title: 'マナビDXクエスト 2025',
+                companies: '大同塗装株式会社様、株式会社アトスフーズ様',
+                url: 'https://dxq.manabi-dx.ipa.go.jp/images/DXQ-pbl-case_2025.pdf',
+            },
+            {
                 year: 'Workshop',
                 title: '筑波大学 産業DXワークショップ',
                 companies: '',
@@ -249,7 +264,7 @@
                 : "relative z-10 flex flex-col h-full";
 
             return (
-                <div className={`glass-card p-8 md:p-10 rounded-[2rem] flex flex-col justify-between hover:border-gray-500 transition-all duration-500 group relative overflow-hidden ${span}`}>
+                <div className={`glass-card p-8 md:p-10 rounded-[2rem] flex flex-col hover:border-gray-500 transition-all duration-500 group relative overflow-hidden ${span}`}>
                     <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
 
                     <div className={contentClass}>
@@ -309,8 +324,9 @@
                     
                     {/* Background Orbs */}
                     <div className="fixed inset-0 overflow-hidden pointer-events-none">
-                        <div className="orb w-[500px] h-[500px] bg-indigo-900/30 top-[-100px] right-[-100px]"></div>
-                        <div className="orb w-[400px] h-[400px] bg-purple-900/20 bottom-[0px] left-[-100px]"></div>
+                        <div className="orb w-[500px] h-[500px] bg-yellow-800/20 top-[-100px] right-[-100px]"></div>
+                        <div className="orb w-[400px] h-[400px] bg-amber-900/15 bottom-[0px] left-[-100px]"></div>
+                        <div className="orb w-[300px] h-[300px] bg-gold/10 top-[50%] left-[50%]"></div>
                     </div>
 
                     {/* Navigation */}
@@ -323,14 +339,7 @@
                             <div className="hidden md:flex gap-8 text-xs font-bold tracking-widest uppercase text-secondary">
                                 <a href="#works" className="hover:text-white transition-colors">Works</a>
                                 <a href="#about" className="hover:text-white transition-colors">About</a>
-                                <a
-                                    href="https://timerex.net/s/omatsuri.chasottco_dbe9/08118041"
-                                    target="_blank"
-                                    rel="noreferrer"
-                                    className="hover:text-white transition-colors"
-                                >
-                                    Consultation
-                                </a>
+                                <a href="mailto:yasuhito.yanagisawa@gmail.com" className="hover:text-white transition-colors">Contact</a>
                             </div>
                         </div>
                     </nav>
@@ -339,7 +348,7 @@
                     <section className="hero-section min-h-screen flex flex-col justify-center px-6 pt-20 fade-in-up">
                         <div className="max-w-7xl mx-auto w-full hero-overlay">
                             <div className="mb-8 flex items-center gap-4">
-                                <span className="px-3 py-1 border border-accent/30 rounded-full text-accent text-xs font-bold tracking-widest uppercase bg-accent/5">
+                                <span className="px-3 py-1 border border-white/20 rounded-full text-secondary text-xs font-bold tracking-widest uppercase bg-white/5">
                                     Personal Studio
                                 </span>
                             </div>
@@ -347,10 +356,10 @@
                                 CULTURE<br/>
                                 <span className="text-secondary opacity-50">×</span> LOGIC
                             </h1>
-                            <div className="flex flex-col md:flex-row gap-10 md:items-end justify-between border-t border-white/10 pt-10">
+                            <div className="flex flex-col md:flex-row gap-10 md:items-end justify-between border-t border-gold/20 pt-10">
                                 <p className="text-xl md:text-2xl text-secondary max-w-xl leading-relaxed font-bold">
                                     <strong className="text-white font-bold">Chattso-GPT</strong> is a creative studio.<br/>
-                                    We bridge the gap between <span className="text-white border-b border-white/30 pb-0.5 font-bold">urban sensation</span> and <span className="text-white border-b border-white/30 pb-0.5 font-bold">artificial intelligence</span>.
+                                    We bridge the gap between <span className="text-accent/80 border-b border-accent/30 pb-0.5 font-bold">urban sensation</span> and <span className="text-accent/80 border-b border-accent/30 pb-0.5 font-bold">artificial intelligence</span>.
                                 </p>
                                 <div className="flex gap-4">
                                     <button
@@ -368,11 +377,11 @@
                     <section id="works" className="px-6 py-20 fade-in-up">
                         <div className="max-w-7xl mx-auto">
                             <h2 className="text-xs font-bold tracking-widest uppercase text-secondary mb-12 flex items-center gap-4">
-                                <span className="w-10 h-[1px] bg-secondary"></span>
+                                <span className="w-10 h-[1px] bg-gold/50"></span>
                                 Selected Domains
                             </h2>
 
-                            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-[480px]">
+                            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-auto">
                                 
                                 {/* Cultural Design */}
                                 <BentoCard 
@@ -396,6 +405,19 @@
                                                     className="underline underline-offset-4 decoration-white/30 hover:decoration-white text-sm text-white"
                                                 >
                                                     建国記念の日 奉祝パレード -永遠の杜 明治神宮-
+                                                </a>
+                                                <span className="text-[11px] text-secondary ml-2">
+                                                    （オマツリジャパン 現地レポート）
+                                                </span>
+                                            </li>
+                                            <li>
+                                                <a
+                                                    href="https://omatsurijapan.com/blog/sakura-nishitama/"
+                                                    target="_blank"
+                                                    rel="noreferrer"
+                                                    className="underline underline-offset-4 decoration-white/30 hover:decoration-white text-sm text-white"
+                                                >
+                                                    西多摩の桜まつり
                                                 </a>
                                                 <span className="text-[11px] text-secondary ml-2">
                                                     （オマツリジャパン 現地レポート）
@@ -426,8 +448,8 @@
                                             </p>
                                         </div>
 
-                                        <div className="mt-4 space-y-6">
-                                            {learningHistory.map((item, index) => (
+                                        <div className="mt-4 space-y-6 max-h-[240px] overflow-y-auto pr-1">
+                                            {learningHistory.slice().reverse().map((item, index) => (
                                                 <div key={item.year + item.title} className="flex gap-4">
                                                     <div className="flex flex-col items-center mt-1 min-w-[64px]">
                                                         <div className="text-[11px] font-semibold text-secondary">
@@ -459,6 +481,40 @@
                                                 </div>
                                             ))}
                                         </div>
+
+                                        {/* Competition Results */}
+                                        <div className="border-t border-white/10 pt-4 mt-3">
+                                            <p className="text-xs font-bold tracking-widest uppercase text-secondary mb-3">
+                                                Competition Results
+                                            </p>
+                                            <div className="space-y-3 max-h-[180px] overflow-y-auto pr-1">
+                                                <a
+                                                    href="https://www.kaggle.com/competitions/matsuo-institute-ds-dojo-4/writeups/1st-place-solution"
+                                                    target="_blank"
+                                                    rel="noreferrer"
+                                                    className="flex items-center gap-3 p-3 rounded-xl bg-white/5 border border-white/5 hover:border-white/20 transition-all"
+                                                >
+                                                    <span className="text-2xl flex-shrink-0">🥇</span>
+                                                    <div>
+                                                        <div className="text-sm font-semibold text-white">松尾研 DS Dojo — 1st Place</div>
+                                                        <div className="text-[11px] text-secondary mt-0.5">Kaggle · Gemma-2-9b-it QLoRA × LightGBM</div>
+                                                    </div>
+                                                </a>
+                                                <a
+                                                    href="https://user.competition.signate.jp/ja/competition/detail/?competition=8fd1916845984ca1ae2d620731deae19&task=0476f9d103cb4ceaab65824438f09615&tab=leaderboard&leaderboard=custom0"
+                                                    target="_blank"
+                                                    rel="noreferrer"
+                                                    className="flex items-center gap-3 p-3 rounded-xl bg-white/5 border border-white/5 hover:border-white/20 transition-all"
+                                                >
+                                                    <span className="text-lg font-bold text-accent/80 flex-shrink-0 w-8 text-center">13</span>
+                                                    <div>
+                                                        <div className="text-sm font-semibold text-white">第4回金融データ活用チャレンジ</div>
+                                                        <div className="text-[11px] text-secondary mt-0.5">SIGNATE</div>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                        </div>
+
                                     </div>
                                 </BentoCard>
 
@@ -469,6 +525,7 @@
                                     subtitle="Fieldwork & Research"
                                     desc="Fieldwork under the name of “walking.” By tracing everyday routes on foot, we discover assets that never appear in datasets and turn them into new perspectives on the city."
                                     tags={['Urban Research', 'Walking', 'MAPDATA']}
+                                    scrollOnMobile={true}
                                 >
                                     <div className="border-t border-white/10 pt-3 mt-2 space-y-2">
                                         <p className="text-xs font-bold tracking-widest uppercase text-secondary">
@@ -485,6 +542,26 @@
                                                     Festival search app log (Gemini × Google)
                                                 </a>
                                             </li>
+                                            <li>
+                                                <a
+                                                    href="https://zenn.dev/chattso_gpt/articles/journey-map-hackathon"
+                                                    target="_blank"
+                                                    rel="noreferrer"
+                                                    className="underline underline-offset-4 decoration-white/30 hover:decoration-white text-white"
+                                                >
+                                                    Journey Map — 写真×AIで旅を再発見
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a
+                                                    href="https://zenn.dev/chattso_gpt/articles/matsuri-quest-hackathon"
+                                                    target="_blank"
+                                                    rel="noreferrer"
+                                                    className="underline underline-offset-4 decoration-white/30 hover:decoration-white text-white"
+                                                >
+                                                    Matsuri Quest — Agentic AI搭載フィールドワーク革新
+                                                </a>
+                                            </li>
                                         </ul>
                                     </div>
                                 </BentoCard>
@@ -493,23 +570,23 @@
                                 <BentoCard 
                                     icon={IconLayers}
                                     title="Architecture"
-                                    subtitle="Project Management"
-                                    desc="From back-office operations to cross-functional team coordination, we support projects that require careful orchestration so that complex initiatives move forward with clarity and calmness."
-                                    tags={['Management', 'Back Office']}
+                                    subtitle="Governance & Operations"
+                                    desc="Built on years of hands-on experience in compliance, risk management, and internal controls within finance, entertainment, and public-sector organizations. Also capable of sales, business development, negotiation, and litigation support. Extensive experience across diverse industries and organizations has cultivated adaptability, stress resilience, and a versatile approach to operational design."
+                                    tags={['Compliance', 'Risk Management', 'BCP', 'Internal Audit', 'IT Advisory']}
                                 />
                             </div>
                         </div>
                     </section>
 
                     {/* About + Portfolio */}
-                    <section id="about" className="py-40 px-6 fade-in-up">
+                    <section id="about" className="py-20 px-6 fade-in-up">
                         <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12">
                             
                             {/* Left */}
                             <div>
                                 <p className="font-serif italic text-3xl md:text-5xl leading-tight mb-10 text-white/90">
                                     "To define the city,<br/>
-                                    <span className="text-secondary">we must walk through it."</span>
+                                    <span className="text-accent/80">we must walk through it."</span>
                                 </p>
 
                                 <div className="text-lg text-secondary leading-relaxed space-y-6">
@@ -561,7 +638,7 @@
                     <footer className="py-20 border-t border-white/10 px-6 fade-in-up bg-black">
                         <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
                             <div>
-                                <h3 className="text-2xl font-bold tracking-tighter text-white">Chattso-GPT</h3>
+                                <h3 className="text-2xl font-bold tracking-tighter text-accent/80">Chattso-GPT</h3>
                                 <p className="text-xs text-secondary mt-2 tracking-widest uppercase">
                                     Tokyo Based / Personal Studio
                                 </p>
@@ -581,14 +658,6 @@
                                     className="text-sm font-bold text-secondary hover:text-white transition-colors"
                                 >
                                     GITHUB
-                                </a>
-                                <a
-                                    href="https://timerex.net/s/omatsuri.chasottco_dbe9/08118041"
-                                    target="_blank"
-                                    rel="noreferrer"
-                                    className="text-sm font-bold text-accent hover:text-white transition-colors"
-                                >
-                                    CONSULTATION
                                 </a>
                             </div>
                         </div>
