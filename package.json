@@ -1,0 +1,20 @@
+{
+  "name": "chasottco.github.io",
+  "version": "1.0.0",
+  "description": "https://yasuhitoyanagisawa.github.io/chasottco.github.io/",
+  "main": "script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/YasuhitoYanagisawa/chasottco.github.io.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/YasuhitoYanagisawa/chasottco.github.io/issues"
+  },
+  "homepage": "https://github.com/YasuhitoYanagisawa/chasottco.github.io#readme"
+}

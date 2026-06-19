@@ -9,8 +9,8 @@
     <script src="https://cdn.tailwindcss.com"></script>
     
     <!-- React & ReactDOM -->
-    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
-    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
     
     <!-- Babel (for JSX) -->
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
@@ -123,9 +123,20 @@
     </style>
 </head>
 <body>
-    <div id="root"></div>
+    <div id="root">
+        <div id="loading" style="color: white; padding: 20px; font-family: sans-serif;">
+            Loading application... (If this stays on screen, there might be a JavaScript error)
+        </div>
+    </div>
+
+    <script>
+        window.onerror = function(msg, url, line, col, error) {
+            document.getElementById('root').innerHTML = '<div style="color:#ff5555; padding: 20px; font-family: sans-serif;"><h3>Script Error</h3><p>' + msg + '</p><p>Line: ' + line + '</p></div>';
+        };
+    </script>
 
     <script type="text/babel">
+
         const { useEffect, useState } = React;
 
         // --- SVG Icons ---
@@ -701,6 +712,7 @@
         };
 
         const root = ReactDOM.createRoot(document.getElementById('root'));
+        document.getElementById('loading')?.remove();
         root.render(<App />);
     </script>
 </body>
