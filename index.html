@@ -14,6 +14,11 @@
     
     <!-- Babel (for JSX) -->
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script>
+        Babel.registerPreset('classic-react', {
+            presets: [[Babel.availablePresets['react'], { runtime: 'classic' }]]
+        });
+    </script>
 
     <!-- Tailwind Config -->
     <script>
@@ -135,10 +140,7 @@
         };
     </script>
 
-    <script type="text/babel">
-        /** @jsx React.createElement */
-        /** @jsxFrag React.Fragment */
-
+    <script type="text/babel" data-presets="classic-react">
         const { useEffect, useState } = React;
 
         // --- SVG Icons ---
